@@ -4,15 +4,24 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using SquareFinder.Db;
 using SquareFinder.Models;
+using SquareFinder.Repositories;
 
 namespace SquareFinder.Controllers
 {
     public class PointListController : ApiController
     {
+        private UnitOfWork unitOfWork = new UnitOfWork();
+
         /// <summary>
         /// Return all PointLists except for the very first which is Default
         /// Before we save points into new point list, we use the default 'invisible' one
         /// </summary>
+        /// 
+        public PointListController()
+        {
+            var context = new Context();
+        }
+
         public IQueryable<PointList> GetPointLists()
         {
             using (var db = new Context())
@@ -26,16 +35,15 @@ namespace SquareFinder.Controllers
         [ResponseType(typeof(PointList))]
         public IHttpActionResult GetPointList(int id)
         {
-            using (var db = new Context())
+            
+            PointList pointList = unitOfWork.PointListsRepository.Find(id);
+            if (pointList == null)
             {
-                PointList pointList = db.PointLists.Find(id);
-                if (pointList == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(pointList);
+                return NotFound();
             }
+
+            return Ok(pointList);
+            
         }
 
         // POST: api/PointLists
@@ -46,26 +54,24 @@ namespace SquareFinder.Controllers
         [System.Web.Http.AcceptVerbs("POST")]
         public IHttpActionResult PostPointList([FromBody] PointList pointList)
         {
-            using (var db = new Context())
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                if (pointList.Points == null)
-                    pointList.Points = new List<Point>();
-
-                // Check if pointlists exists. If it does - overwrite
-                var existingPointList = db.PointLists.SingleOrDefault(x => x.Name == pointList.Name);
-                if (existingPointList != null)
-                    existingPointList.Points = pointList.Points;
-                else
-                    db.PointLists.Add(pointList);
-                db.SaveChanges();
-
-                return CreatedAtRoute("DefaultApi", new {id = pointList.Id}, pointList);
+                return BadRequest(ModelState);
             }
+
+            if (pointList.Points == null)
+                pointList.Points = new List<Point>();
+
+            // Check if pointlists exists. If it does - overwrite
+            var existingPointList = unitOfWork.GetContext().PointLists.SingleOrDefault(x => x.Name == pointList.Name);
+            if (existingPointList != null)
+                existingPointList.Points = pointList.Points;
+            else
+                unitOfWork.PointListsRepository.Add(pointList);
+            unitOfWork.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new {id = pointList.Id}, pointList);
+            
         }
 
         // DELETE: api/PointLists/5
