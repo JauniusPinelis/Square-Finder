@@ -5,40 +5,39 @@ export default class AddNewPointForm extends Component {
     super(props);
     this.state = {
       statics: {
-        cordUpperLimit: 5000,
-        cordLowerLimit: -5000
+        x: null,
+        y: null,
+        upperLimit: 5000,
+        lowerLimit: -5000
       }
     };
   }
-  getInitialState() {
-    return { X: 0, Y: 0 };
-  }
-  setXCoordinate(e) {
-    this.setState({ X: e.target.value });
-  }
-  setYCoordinate(e) {
-    this.setState({ Y: e.target.value });
-  }
-  handleSubmit(e) {
+  setX = e => {
+    this.setState({ x: e.target.value });
+  };
+  setY = e => {
+    this.setState({ y: e.target.value });
+  };
+  handleSubmit = e => {
     e.preventDefault();
-    var x = parseFloat(this.state.X);
-    var y = parseFloat(this.state.Y);
+    var x = parseFloat(this.state.x);
+    var y = parseFloat(this.state.y);
 
     if (
       !isNaN(x) &&
       isFinite(y) &&
       !isNaN(x) &&
       isFinite(y) &&
-      x < AddNewPointForm.cordUpperLimit &&
-      x > AddNewPointForm.cordLowerLimit &&
-      y < AddNewPointForm.cordUpperLimit &&
-      y > AddNewPointForm.cordLowerLimit
+      x < this.state.upperLimit &&
+      x > this.state.lowerLimit &&
+      y < this.state.upperLimit &&
+      y > this.state.lowerLimit
     ) {
       var newPoint = {
-        X: this.state.X,
-        Y: this.state.Y
+        x: x,
+        y: y
       };
-      this.props.store.addPoint(newPoint);
+      this.props.addPoint(newPoint);
     } else {
       alert(
         "Coordinates must be between " +
@@ -47,7 +46,7 @@ export default class AddNewPointForm extends Component {
           AddNewPointForm.cordUpperLimit
       );
     }
-  }
+  };
   render() {
     return (
       <div id="addNewPointMenu">
@@ -56,14 +55,14 @@ export default class AddNewPointForm extends Component {
           <input
             className="form-control"
             placeholder="X coordinate"
-            onChange={this.setXCoordinate}
+            onChange={this.setX}
           />
           <small className="text-muted">Must be between -5000 and 5000.</small>
           <p />
           <input
             className="form-control"
             placeholder="Y coordinate"
-            onChange={this.setYCoordinate}
+            onChange={this.setY}
           />
           <small className="text-muted">Must be between -5000 and 5000.</small>
           <p />

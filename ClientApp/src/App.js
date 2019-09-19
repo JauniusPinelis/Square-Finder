@@ -40,16 +40,16 @@ class App extends Component {
       });
     });
   }
+  deletePoint() {}
   deleteAllPoint() {}
+  addPoint() {}
   render() {
     return (
       <div className="container">
         <Container>
           <Row>
             <div className="text-center">
-              <h1 className="h1">
-                Number of squares: {this.state.squares.length}
-              </h1>
+              <h1>Number of squares: {this.state.squares.length}</h1>
             </div>
           </Row>
           <Row>
@@ -57,7 +57,10 @@ class App extends Component {
               <Grid />
             </Col>
             <Col>
-              <Points points={this.state.points} />
+              <Points
+                points={this.state.points}
+                deletePoint={this.deletePoint}
+              />
             </Col>
             <Col>
               <Squares squares={this.state.squares} />
@@ -69,7 +72,7 @@ class App extends Component {
               <PointLists />
             </Col>
             <Col>
-              <AddNewPointForm />
+              <AddNewPointForm addPoint={this.addPoint} />
             </Col>
             <Col>{<ButtonMenu />}</Col>
           </Row>
