@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import PointList from "./PointList";
+
 export default class PointLists extends Component {
   constructor(props) {
     super(props);
@@ -7,37 +9,19 @@ export default class PointLists extends Component {
       xMaxCells: 15,
       yMaxCells: 15,
       cellSize: 20,
-      pointColor: "rgb(30,144,255)"
-    };
-  }
-
-  getInitialState() {
-    return {
-      pointlists: [],
-      name: ""
+      pointColor: "rgb(30,144,255)",
+      name: null
     };
   }
   addPointList() {
-    this.props.store.addPointList(this.state.name, this.props.state.points);
+    this.props.addPointList(this.state.name, this.props.state.points);
   }
   setPointListName(e) {
     this.setState({ name: e.target.value });
   }
   render() {
-    var store = this.props.store;
-    var state = this.props.state;
-    var pointListData = state.pointLists.slice();
-    //Dont display the default pointlist
-    pointListData.shift();
-    var pointLists = pointListData.map(function(pointList) {
-      return (
-        <PointList
-          key={pointList.Id}
-          pointList={pointList}
-          state={state}
-          store={store}
-        />
-      );
+    var pointLists = this.props.pointLists.map(function(pointList) {
+      return <PointList key={pointList.Id} pointList={pointList} />;
     });
     return (
       <div id="pointList">

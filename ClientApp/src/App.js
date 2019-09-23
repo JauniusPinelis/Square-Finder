@@ -30,7 +30,7 @@ class App extends Component {
     this.loadData();
   }
   loadData() {
-    axios.get("/api/point").then(res => {
+    axios.get("/api/points").then(res => {
       console.log(res);
       console.log(res.data);
       this.setState({
@@ -43,6 +43,7 @@ class App extends Component {
   deletePoint() {}
   deleteAllPoint() {}
   addPoint() {}
+  addPointList() {}
   render() {
     return (
       <div className="container">
@@ -69,7 +70,10 @@ class App extends Component {
 
           <Row>
             <Col>
-              <PointLists />
+              <PointLists
+                addPointList={this.addPointList}
+                pointLists={this.state.pointLists}
+              />
             </Col>
             <Col>
               <AddNewPointForm addPoint={this.addPoint} />
