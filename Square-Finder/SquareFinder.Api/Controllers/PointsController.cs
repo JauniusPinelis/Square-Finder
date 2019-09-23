@@ -10,10 +10,10 @@ namespace SquareFinder.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PointController : Controller
+    public class PointsController : Controller
     {
         private IDbRepository _repository;
-        public PointController(IDbRepository repository)
+        public PointsController(IDbRepository repository)
         {
             _repository = repository;
         }

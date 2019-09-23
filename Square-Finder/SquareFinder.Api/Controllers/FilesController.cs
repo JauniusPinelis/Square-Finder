@@ -12,10 +12,10 @@ namespace SquareFinder.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FileController : Controller
+    public class FilesController : Controller
     {
         private IDbRepository _repository { get; set; }
-        public FileController(IDbRepository repository)
+        public FilesController(IDbRepository repository)
         {
             _repository = repository;
         }
