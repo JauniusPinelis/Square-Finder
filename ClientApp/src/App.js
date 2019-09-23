@@ -46,7 +46,7 @@ class App extends Component {
         //nothing for now
       });
   }
-  deletePoint() {}
+  deletePoint = () => {};
   deleteAllPoint = () => {};
   addPoint = () => {};
   addPointList() {}
