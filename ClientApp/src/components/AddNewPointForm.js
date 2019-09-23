@@ -4,12 +4,10 @@ export default class AddNewPointForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      statics: {
-        x: null,
-        y: null,
-        upperLimit: 5000,
-        lowerLimit: -5000
-      }
+      x: null,
+      y: null,
+      max: 5000,
+      min: -5000
     };
   }
   setX = e => {
@@ -28,10 +26,10 @@ export default class AddNewPointForm extends Component {
       isFinite(y) &&
       !isNaN(x) &&
       isFinite(y) &&
-      x < this.state.upperLimit &&
-      x > this.state.lowerLimit &&
-      y < this.state.upperLimit &&
-      y > this.state.lowerLimit
+      x < this.state.max &&
+      x > this.state.min &&
+      y < this.state.max &&
+      y > this.state.min
     ) {
       var newPoint = {
         x: x,
@@ -41,9 +39,9 @@ export default class AddNewPointForm extends Component {
     } else {
       alert(
         "Coordinates must be between " +
-          AddNewPointForm.cordLowerLimit +
+          this.state.min +
           " and " +
-          AddNewPointForm.cordUpperLimit
+          this.state.max
       );
     }
   };
@@ -57,14 +55,18 @@ export default class AddNewPointForm extends Component {
             placeholder="X coordinate"
             onChange={this.setX}
           />
-          <small className="text-muted">Must be between -5000 and 5000.</small>
+          <small className="text-muted">
+            Must be between {this.state.min} and {this.state.max}.
+          </small>
           <p />
           <input
             className="form-control"
             placeholder="Y coordinate"
             onChange={this.setY}
           />
-          <small className="text-muted">Must be between -5000 and 5000.</small>
+          <small className="text-muted">
+            Must be between {this.state.min} and {this.state.max}.
+          </small>
           <p />
           <button className="btn btn-primary">Add New Point</button>
         </form>

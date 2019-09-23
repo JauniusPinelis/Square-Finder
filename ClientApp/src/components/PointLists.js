@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import PointList from "./PointList";
+import PointListRow from "./PointListRow";
 
 export default class PointLists extends Component {
   constructor(props) {
@@ -20,8 +20,8 @@ export default class PointLists extends Component {
     this.setState({ name: e.target.value });
   }
   render() {
-    var pointLists = this.props.pointLists.map(function(pointList) {
-      return <PointList key={pointList.Id} pointList={pointList} />;
+    var pointListRows = this.props.pointLists.map(function(pointList) {
+      return <PointListRow key={pointList.Id} pointList={pointList} />;
     });
     return (
       <div id="pointList">
@@ -33,9 +33,8 @@ export default class PointLists extends Component {
             onChange={this.setPointListName}
           />
           <small id="passwordHelpInline" className="text-muted">
-            Current Points will be saved into new PointList.
-            <br />
-            Using same name will overwrite the PointList.
+            Current Points will be saved into new PointList. Using same name
+            will overwrite the PointList.
           </small>
           <p />
           <button onClick={this.addPointList} className="btn btn-primary">
@@ -53,7 +52,7 @@ export default class PointLists extends Component {
                 <th>Functions</th>
               </tr>
             </thead>
-            <tbody>{pointLists}</tbody>
+            <tbody>{pointListRows}</tbody>
           </table>
         </div>
       </div>

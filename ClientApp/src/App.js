@@ -24,21 +24,27 @@ class App extends Component {
     super();
     this.state = {
       squares: [],
-      points: []
+      points: [],
+      pointLists: []
     };
 
     this.loadData();
   }
   loadData() {
-    axios.get("/api/points").then(res => {
-      console.log(res);
-      console.log(res.data);
-      this.setState({
-        pointLists: res.data.pointLists || [],
-        squares: res.data.squares || [],
-        points: res.data.points || []
+    axios
+      .get("/api/points")
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        this.setState({
+          pointLists: res.data.pointLists || [],
+          squares: res.data.squares || [],
+          points: res.data.points || []
+        });
+      })
+      .catch(error => {
+        //nothing for now
       });
-    });
   }
   deletePoint() {}
   deleteAllPoint() {}
@@ -55,7 +61,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col>
-              <Grid />
+              <Grid points={this.state.points} squares={this.state.squares} />
             </Col>
             <Col>
               <Points

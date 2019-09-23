@@ -10,24 +10,25 @@ export default class Grid extends Component {
       pointColor: "rgb(30,144,255)"
     };
   }
-  /*isDrawable (object) {
-        if (object.X != null) {
-            //Object is a point
-            return (
-                object.X < Grid.xMaxCells && object.X >= 0
-                && object.Y < Grid.yMaxCells && object.Y >= 0);
-        }
-        else {
-
-            var isDrawable = true;
-            //Object is a square
-            //All 4 points must be in range to draw
-            object.Points.forEach(function (point) {
-                isDrawable = isDrawable && Grid.isPointDrawable(point);
-            });
-            return isDrawable;
-        }
+  isDrawable = object => {
+    if (object.X != null) {
+      //Object is a point
+      return (
+        object.X < this.state.xMaxCells &&
+        object.X >= 0 &&
+        object.Y < this.state.yMaxCells &&
+        object.Y >= 0
+      );
+    } else {
+      var isDrawable = true;
+      //Object is a square
+      //All 4 points must be in range to draw
+      object.Points.forEach(function(point) {
+        isDrawable = isDrawable && Grid.isPointDrawable(point);
+      });
+      return isDrawable;
     }
+  };
   isPointDrawable(point) {
     return (
       point.X < Grid.xMaxCells &&
@@ -36,17 +37,11 @@ export default class Grid extends Component {
       point.Y >= 0
     );
   }
-  getInitialState() {
-    return {
-      points: [],
-      squares: []
-    };
-  }
-  componentDidMount() {
+  componentDidMount = () => {
     this.drawCanvas();
-    this.drawPoints(this.props.state.points);
-    this.drawSquares(this.props.state.squares);
-  }
+    this.drawPoints(this.props.points);
+    this.drawSquares(this.props.squares);
+  };
   componentDidUpdate() {
     this.drawCanvas();
     this.drawPoints(this.props.state.points);
@@ -126,7 +121,7 @@ export default class Grid extends Component {
         ctx.fill();
       });
   }
-  drawCanvas() {
+  drawCanvas = () => {
     var ctx = this.refs.canvas.getContext("2d");
 
     var width = Grid.xMaxCells * Grid.cellSize;
@@ -135,8 +130,8 @@ export default class Grid extends Component {
     ctx.canvas.width = width;
     ctx.canvas.height = height;
 
-    for (x = 0; x <= width; x += Grid.cellSize) {
-      for (y = 0; y <= height; y += Grid.cellSize) {
+    for (var x = 0; x <= width; x += Grid.cellSize) {
+      for (var y = 0; y <= height; y += Grid.cellSize) {
         ctx.moveTo(x, 0);
         ctx.lineTo(x, height);
         ctx.stroke();
@@ -145,16 +140,16 @@ export default class Grid extends Component {
         ctx.stroke();
       }
     }
-  }
-  */
+  };
+
   addNewPoint(event) {
-    /*var canvas = document.getElementById("canvas");
+    var canvas = document.getElementById("canvas");
     var rect = canvas.getBoundingClientRect();
     var x = Math.round((event.clientX - rect.left) / Grid.cellSize);
     var y = Math.round(
       Grid.yMaxCells - (event.clientY - rect.top) / Grid.cellSize
     );
-    this.props.store.addPoint({ X: x, Y: y });*/
+    this.props.store.addPoint({ X: x, Y: y });
   }
   render() {
     return (

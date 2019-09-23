@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class PointList extends Component {
+export default class PointListRow extends Component {
   deletePointList() {
     this.props.store.deletePointList(this.props.pointList.Id);
   }
