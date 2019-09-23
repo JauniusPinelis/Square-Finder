@@ -24,7 +24,7 @@ export default class Grid extends Component {
       //Object is a square
       //All 4 points must be in range to draw
       object.Points.forEach(function(point) {
-        isDrawable = isDrawable && Grid.isPointDrawable(point);
+        isDrawable = this.isDrawable && this.isPointDrawable(point);
       });
       return isDrawable;
     }
@@ -39,13 +39,13 @@ export default class Grid extends Component {
   }
   componentDidMount = () => {
     this.drawCanvas();
-    this.drawPoints(this.props.points);
+    this.drawPoints();
     this.drawSquares(this.props.squares);
   };
   componentDidUpdate() {
     this.drawCanvas();
-    this.drawPoints(this.props.state.points);
-    this.drawSquares(this.props.state.squares);
+    this.drawPoints();
+    this.drawSquares(this.props.squares);
   }
   drawSquares(squares) {
     var ctx = document.getElementById("canvas").getContext("2d");
@@ -53,7 +53,7 @@ export default class Grid extends Component {
 
     squares
       .filter(function(square) {
-        return Grid.isDrawable(square);
+        return this.isDrawable(square);
       })
       .forEach(function(square) {
         ctx.beginPath();
@@ -99,39 +99,35 @@ export default class Grid extends Component {
         ctx.stroke();
       });
   }
-  drawPoints(points) {
+  drawPoints = () => {
     var ctx = document.getElementById("canvas").getContext("2d");
-    ctx.fillStyle = Grid.pointColor;
+    ctx.fillStyle = this.state.pointColor;
 
-    points
-      .filter(function(point) {
-        return Grid.isDrawable(point);
-      })
-      .forEach(function(point) {
-        ctx.beginPath();
-        ctx.arc(
-          point.X * Grid.cellSize,
-          (Grid.yMaxCells - point.Y) * Grid.cellSize,
-          5,
-          0,
-          Math.PI * 2,
-          true
-        );
-        ctx.closePath();
-        ctx.fill();
-      });
-  }
+    this.props.points.forEach(point => {
+      ctx.beginPath();
+      ctx.arc(
+        point.x * this.state.cellSize,
+        (this.state.yMaxCells - point.y) * this.state.cellSize,
+        5,
+        0,
+        Math.PI * 2,
+        true
+      );
+      ctx.closePath();
+      ctx.fill();
+    });
+  };
   drawCanvas = () => {
     var ctx = this.refs.canvas.getContext("2d");
 
-    var width = Grid.xMaxCells * Grid.cellSize;
-    var height = Grid.yMaxCells * Grid.cellSize;
+    var width = this.state.xMaxCells * this.state.cellSize;
+    var height = this.state.yMaxCells * this.state.cellSize;
 
     ctx.canvas.width = width;
     ctx.canvas.height = height;
 
-    for (var x = 0; x <= width; x += Grid.cellSize) {
-      for (var y = 0; y <= height; y += Grid.cellSize) {
+    for (var x = 0; x <= width; x += this.state.cellSize) {
+      for (var y = 0; y <= height; y += this.state.cellSize) {
         ctx.moveTo(x, 0);
         ctx.lineTo(x, height);
         ctx.stroke();
