@@ -22,7 +22,7 @@ namespace SquareFinder.Controllers
             if (pointList == null)
                 return NotFound();
 
-            return Ok(Square.GetSquares(pointList.Points));
+            return Ok(SquareEntity.GetSquares(pointList.Points));
         }
     }
 }

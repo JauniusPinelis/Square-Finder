@@ -12,6 +12,6 @@ namespace SquareFinder.Api.Db
         }
 
         public DbSet<PointEntity> Points { get; set; }
-        public DbSet<PointList> PointLists { get; set; }
+        public DbSet<PointListEntity> PointLists { get; set; }
     }
 }

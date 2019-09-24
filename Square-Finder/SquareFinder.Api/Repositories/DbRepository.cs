@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SquareFinder.Api.Repositories
 {
@@ -91,12 +91,12 @@ namespace SquareFinder.Api.Repositories
 
         }
 
-        public IEnumerable<PointList> GetPointLists()
+        public IEnumerable<PointListEntity> GetPointLists()
         {
             return _dbContext.PointLists;
         }
 
-        public PointList GetPointListById(int pointListId)
+        public PointListEntity GetPointListById(int pointListId)
         {
             return _dbContext.PointLists.SingleOrDefault(p => p.Id == pointListId);
         }
@@ -111,12 +111,12 @@ namespace SquareFinder.Api.Repositories
             }
         }
 
-        public void AddPointList(PointList pointList)
+        public void AddPointList(PointListEntity pointList)
         {
             _dbContext.Add(pointList);
         }
 
-        public void OverwritePointList(int pointListId, PointList pointList)
+        public void OverwritePointList(int pointListId, PointListEntity pointList)
         {
             var existingPointList = GetPointListById(pointListId);
             existingPointList = pointList;
@@ -144,10 +144,10 @@ namespace SquareFinder.Api.Repositories
             return _dbContext.Points;
         } 
 
-        public StateInformation GetStateInfo()
+        public StateInfo GetStateInfo()
         {
 
-            return new StateInformation()
+            return new StateInfo()
             {
                 Points = GetPoints(),
                 PointLists = GetPointLists()

@@ -10,11 +10,11 @@ namespace SquareFinder.Api.Repositories
 {
     public interface IDbRepository
     {
-        IEnumerable<PointList> GetPointLists();
-        PointList GetPointListById(int pointListId);
+        IEnumerable<PointListEntity> GetPointLists();
+        PointListEntity GetPointListById(int pointListId);
         void RemovePointList(int pointListId);
-        void AddPointList(PointList pointList);
-        void OverwritePointList(int pointListId, PointList pointList);
+        void AddPointList(PointListEntity pointList);
+        void OverwritePointList(int pointListId, PointListEntity pointList);
 
         PointEntity GetPointById(int pointId);
         void DeletePoint(PointEntity point);
@@ -24,7 +24,7 @@ namespace SquareFinder.Api.Repositories
         string DeletePoints(string data, string listId, DbContext db);
         IEnumerable<PointEntity> ConvertDataToPoints(string data, ref StringBuilder errorBuilder);
 
-        StateInformation GetStateInfo();
+        StateInfo GetStateInfo();
         void SaveChanges();
     }
 }

@@ -28,7 +28,7 @@ namespace SquareFinder.Controllers
         public IActionResult GetPointList(int id)
         {
             
-            PointList pointList = _repository.GetPointListById(id);
+            PointListEntity pointList = _repository.GetPointListById(id);
             if (pointList == null)
             {
                 return NotFound();
@@ -40,7 +40,7 @@ namespace SquareFinder.Controllers
 
 
         [HttpPost]
-        public IActionResult PostPointList([FromBody] PointList pointList)
+        public IActionResult PostPointList([FromBody] PointListEntity pointList)
         {
             if (!ModelState.IsValid)
             {

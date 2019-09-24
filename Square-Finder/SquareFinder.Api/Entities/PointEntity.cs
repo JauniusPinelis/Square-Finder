@@ -15,6 +15,9 @@ namespace SquareFinder.Models
         public int X { get; set;}
         public int Y { get; set;}
 
+        public PointListEntity PointList { get; set; }
+        public int PointListId { get; set; }
+
         public PointEntity()
         {
 
@@ -26,7 +29,7 @@ namespace SquareFinder.Models
             Y = y;
         }
 
-        public bool IsValid(PointList pointList, ref StringBuilder errorBuilder)
+        public bool IsValid(PointListEntity pointList, ref StringBuilder errorBuilder)
         {
             string err = $"Point x:{X} y:{Y} has not been added: ";
             if (pointList == null)

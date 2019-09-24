@@ -4,20 +4,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SquareFinder.Models
 {
     [Table("PointList")]
-    public class PointList
+    public class PointListEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual List<PointEntity> Points { get; set; }
+        public List<PointEntity> Points { get; set; }
 
-        public PointList()
+        public SquareEntity Square { get; set; }
+
+
+
+        public PointListEntity()
         {
             Points = new List<PointEntity>();
         }
 
-        public PointList(string name)
+        public PointListEntity(string name)
         {
             Name = name;
             Points = new List<PointEntity>();

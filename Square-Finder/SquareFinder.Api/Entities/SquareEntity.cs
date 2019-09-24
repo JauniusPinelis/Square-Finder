@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace SquareFinder.Models
 {
-    public class Square : IEquatable<Square>
+    public class SquareEntity : IEquatable<SquareEntity>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public List<PointEntity> Points { get; set; }
 
-        public Square(PointEntity firstPoint, PointEntity secondPoint, PointEntity thirdPoint, PointEntity fourthPoint)
+        public SquareEntity(PointEntity firstPoint, PointEntity secondPoint, PointEntity thirdPoint, PointEntity fourthPoint)
         {
             
             Points = new List<PointEntity> {firstPoint, secondPoint, thirdPoint, fourthPoint};
@@ -30,9 +30,9 @@ namespace SquareFinder.Models
         /// what points are needed to make a square. If those points are found
         /// in out pointList - mark them as a square.
         /// </summary>
-        public static List<Square> GetSquares(List<PointEntity> points)
+        public static List<SquareEntity> GetSquares(List<PointEntity> points)
         {
-            var squares = new List<Square>();
+            var squares = new List<SquareEntity>();
 
             //Not enough points - there are no squares
             if (points.Count() < 4) 
@@ -62,7 +62,7 @@ namespace SquareFinder.Models
                         
                     if (points.Contains(pointNeeded1) && points.Contains(pointNeeded2))
                     {
-                        var newSquare = new Square(point1, point2, pointNeeded1, pointNeeded2);
+                        var newSquare = new SquareEntity(point1, point2, pointNeeded1, pointNeeded2);
                         if (!squares.Contains(newSquare)){
                             squares.Add(newSquare);
                         }
@@ -79,7 +79,7 @@ namespace SquareFinder.Models
 
                     if (points.Contains(pointNeeded1) && points.Contains(pointNeeded2))
                     {
-                        var newSquare = new Square(point1, point2, pointNeeded1, pointNeeded2);
+                        var newSquare = new SquareEntity(point1, point2, pointNeeded1, pointNeeded2);
                         if (!squares.Contains(newSquare))
                         {
                             squares.Add(newSquare);
@@ -90,7 +90,7 @@ namespace SquareFinder.Models
             return squares.ToList();
         }
 
-        public bool Equals(Square square)
+        public bool Equals(SquareEntity square)
         {
             if (square == null)
             {
