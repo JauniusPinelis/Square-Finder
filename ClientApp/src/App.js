@@ -50,8 +50,14 @@ class App extends Component {
   deleteAllPoint = () => {};
   addPoint = pointObject => {
     var pointJson = JSON.stringify(pointObject);
-    axios.post("/api/points", {
-      pointJson
+    axios({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "post",
+      url: "/api/points",
+
+      data: pointJson
     });
     this.loadData();
   };

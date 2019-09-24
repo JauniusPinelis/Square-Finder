@@ -11,13 +11,13 @@ export default class Grid extends Component {
     };
   }
   isDrawable = object => {
-    if (object.X != null) {
+    if (object.x != null) {
       //Object is a point
       return (
-        object.X < this.state.xMaxCells &&
-        object.X >= 0 &&
-        object.Y < this.state.yMaxCells &&
-        object.Y >= 0
+        object.x < this.state.xMaxCells &&
+        object.x >= 0 &&
+        object.y < this.state.yMaxCells &&
+        object.y >= 0
       );
     } else {
       var isDrawable = true;
@@ -31,10 +31,10 @@ export default class Grid extends Component {
   };
   isPointDrawable = point => {
     return (
-      point.X < Grid.xMaxCells &&
-      point.X >= 0 &&
-      point.Y < Grid.yMaxCells &&
-      point.Y >= 0
+      point.x < this.state.xMaxCells &&
+      point.x >= 0 &&
+      point.y < this.state.yMaxCells &&
+      point.y >= 0
     );
   };
   componentDidMount = () => {
@@ -49,7 +49,7 @@ export default class Grid extends Component {
   }
   drawSquares = squares => {
     var ctx = document.getElementById("canvas").getContext("2d");
-    ctx.fillStyle = Grid.pointColor;
+    ctx.fillStyle = this.state.pointColor;
 
     squares
       .filter(function(square) {
