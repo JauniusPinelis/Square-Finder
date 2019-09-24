@@ -23,20 +23,20 @@ export default class Grid extends Component {
       var isDrawable = true;
       //Object is a square
       //All 4 points must be in range to draw
-      object.Points.forEach(function(point) {
+      object.Points.forEach(point => {
         isDrawable = this.isDrawable && this.isPointDrawable(point);
       });
       return isDrawable;
     }
   };
-  isPointDrawable(point) {
+  isPointDrawable = point => {
     return (
       point.X < Grid.xMaxCells &&
       point.X >= 0 &&
       point.Y < Grid.yMaxCells &&
       point.Y >= 0
     );
-  }
+  };
   componentDidMount = () => {
     this.drawCanvas();
     this.drawPoints();
@@ -47,7 +47,7 @@ export default class Grid extends Component {
     this.drawPoints();
     this.drawSquares(this.props.squares);
   }
-  drawSquares(squares) {
+  drawSquares = squares => {
     var ctx = document.getElementById("canvas").getContext("2d");
     ctx.fillStyle = Grid.pointColor;
 
@@ -98,7 +98,7 @@ export default class Grid extends Component {
         );
         ctx.stroke();
       });
-  }
+  };
   drawPoints = () => {
     var ctx = document.getElementById("canvas").getContext("2d");
     ctx.fillStyle = this.state.pointColor;
@@ -145,7 +145,12 @@ export default class Grid extends Component {
     var y = Math.round(
       Grid.yMaxCells - (event.clientY - rect.top) / Grid.cellSize
     );
-    this.props.store.addPoint({ X: x, Y: y });
+    var pointObject = {
+      x: x,
+      y: y,
+      pointListId: 0
+    };
+    this.props.store.addPoint(pointObject);
   }
   render() {
     return (

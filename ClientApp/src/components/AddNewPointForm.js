@@ -33,7 +33,8 @@ export default class AddNewPointForm extends Component {
     ) {
       var newPoint = {
         x: x,
-        y: y
+        y: y,
+        pointListId: 0
       };
       this.props.addPoint(newPoint);
     } else {

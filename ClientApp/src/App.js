@@ -48,7 +48,13 @@ class App extends Component {
   }
   deletePoint = () => {};
   deleteAllPoint = () => {};
-  addPoint = () => {};
+  addPoint = pointObject => {
+    var pointJson = JSON.stringify(pointObject);
+    axios.post("/api/points", {
+      pointJson
+    });
+    this.loadData();
+  };
   addPointList() {}
   render() {
     return (

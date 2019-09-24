@@ -30,7 +30,6 @@ namespace SquareFinder.Controllers
         [HttpPost]
         public IActionResult AddPoint([FromBody] PointDto pointData)
         {
-            StringBuilder errorBuilder = new StringBuilder();
             var point = new PointEntity(pointData.X, pointData.Y);
             //if (point.IsValid(unitOfWork.PointsRepository.GetDb(),pointData.PointListId, ref errorBuilder))
             //{
