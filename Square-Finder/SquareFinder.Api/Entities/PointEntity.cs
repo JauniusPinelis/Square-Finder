@@ -29,27 +29,22 @@ namespace SquareFinder.Models
             Y = y;
         }
 
-        public bool IsValid(PointListEntity pointList, ref StringBuilder errorBuilder)
+        public bool IsValid(PointListEntity pointList)
         {
-            string err = $"Point x:{X} y:{Y} has not been added: ";
             if (pointList == null)
             {
-                errorBuilder.AppendLine(err + "PointList not found");
                 return false;
             }
             if (pointList.Points.Count() >= 10000)
             {
-                errorBuilder.AppendLine(err + "10 000 points limit reached");
                 return false;
             }
             if (X < -5000 || X > 5000 || Y < -5000 || Y > 5000)
             {
-                errorBuilder.AppendLine(err + "Point coordinates are Incorrect");
                 return false;
             }
             if (pointList.Points.Contains(this))
             {
-                errorBuilder.AppendLine(err + "Point already exists");
                 return false;
             }
             return true;

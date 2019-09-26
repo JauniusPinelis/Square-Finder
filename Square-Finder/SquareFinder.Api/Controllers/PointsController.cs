@@ -31,10 +31,10 @@ namespace SquareFinder.Controllers
         public IActionResult AddPoint([FromBody] PointDto pointData)
         {
             var point = new PointEntity(pointData.X, pointData.Y);
-            _repository.
-            if (point.IsValid(unitOfWork.PointsRepository.GetDb(), pointData.PointListId, ref errorBuilder))
+            var pointList = _repository.GetPointListById(pointData.PointListId);
+
+            if (point.IsValid(pointList))
             {
-                var pointList = _repository.GetPointListById(pointData.PointListId);
                 pointList?.Points.Add(point);
                 return CreatedAtRoute("DefaultApi", new { id = point.Id }, point);
             }

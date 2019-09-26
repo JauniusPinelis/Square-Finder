@@ -22,7 +22,7 @@ namespace SquareFinder.Api.Repositories
 
         string ImportPoints(string data, string listId);
         string DeletePoints(string data, string listId, DbContext db);
-        IEnumerable<PointEntity> ConvertDataToPoints(string data, ref StringBuilder errorBuilder);
+        IEnumerable<PointEntity> ConvertDataToPoints(string data);
 
         StateInfo GetStateInfo();
         void SaveChanges();

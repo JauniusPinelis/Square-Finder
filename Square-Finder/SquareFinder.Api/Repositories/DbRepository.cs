@@ -20,7 +20,6 @@ namespace SquareFinder.Api.Repositories
 
         public string ImportPoints(string data, string listId)
         {
-            var errorBuilder = new StringBuilder();
             var currentListId = int.Parse(listId);
 
             var pointList = GetPointListById(currentListId);
@@ -28,11 +27,11 @@ namespace SquareFinder.Api.Repositories
             {
                 var newPointsList = pointList.Points;
 
-                var pointsToAdd = ConvertDataToPoints(data, ref errorBuilder);
+                var pointsToAdd = ConvertDataToPoints(data);
 
                 foreach (var point in pointsToAdd)
                 {
-                    if (point.IsValid(pointList, ref errorBuilder))
+                    if (point.IsValid(pointList))
                     {
                         newPointsList.Add(point);
                     }
@@ -43,28 +42,27 @@ namespace SquareFinder.Api.Repositories
             return errorBuilder.ToString();
         }
 
-        public string DeletePoints(string data, string listId, DbContext db)
+        public void DeletePoints(string data, string listId, DbContext db)
         {
-            var errorBuilder = new StringBuilder();
             int currentListId = int.Parse(listId);
             var pointList = GetPointListById(currentListId);
-            if (pointList == null) return "Pointlist has not been found";
-            var pointsToDelete = ConvertDataToPoints(data, ref errorBuilder);
+            if (pointList == null) return;
+            var pointsToDelete = ConvertDataToPoints(data);
 
             foreach (var point in pointsToDelete)
             {
                 var pointToDelete = pointList.Points.FirstOrDefault(x => x.X == point.X && x.Y == point.Y);
                 if (pointToDelete != null)
                     DeletePoint(pointToDelete);
-                else
-                    errorBuilder.AppendLine($"Point x:{point.X}, y:{point.Y} has not been found");
+                
+                  
             }
             db.SaveChanges();
 
-            return errorBuilder.ToString();
+            
         }
 
-        public IEnumerable<PointEntity> ConvertDataToPoints(string data, ref StringBuilder errorBuilder)
+        public IEnumerable<PointEntity> ConvertDataToPoints(string data)
         {
             var points = new List<PointEntity>();
 
@@ -83,7 +81,7 @@ namespace SquareFinder.Api.Repositories
                         points.Add(new PointEntity(x, y));
                     else
                     {
-                        errorBuilder.AppendLine($"Point x:{pointData[0]} y:{pointsData[1]}");
+                       // error
                     }
                 }
             }
