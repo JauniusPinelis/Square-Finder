@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace SquareFinder.Models
+namespace SquareFinder.Infrastructure.Entities
 {
     public class SquareEntity : IEquatable<SquareEntity>
     {

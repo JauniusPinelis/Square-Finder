@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SquareFinder.Api.Repositories;
+using SquareFinder.Infrastructure.Repositories;
 
 namespace SquareFinder.Controllers
 {

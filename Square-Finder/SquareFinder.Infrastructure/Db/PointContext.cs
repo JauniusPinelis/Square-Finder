@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SquareFinder.Models;
+﻿
+using Microsoft.EntityFrameworkCore;
+using SquareFinder.Infrastructure.Entities;
 
-namespace SquareFinder.Api.Db
+namespace SquareFinder.Infrastructure.Db
 {
     public class PointContext : DbContext
     {
         public PointContext(DbContextOptions<PointContext> options)
            : base(options)
         {
-            Database.Migrate();
+           
         }
 
         public DbSet<PointEntity> Points { get; set; }

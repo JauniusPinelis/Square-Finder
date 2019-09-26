@@ -1,11 +1,11 @@
-﻿using SquareFinder.Api.Repositories;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace SquareFinder.Models
+namespace SquareFinder.Infrastructure.Entities
 {
     [Table("Point")]
     public class PointEntity : IComparable<PointEntity>

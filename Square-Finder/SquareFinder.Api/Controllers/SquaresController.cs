@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SquareFinder.Api.Db;
-using SquareFinder.Api.Repositories;
+using SquareFinder.Infrastructure.Entities;
+using SquareFinder.Infrastructure.Repositories;
 using SquareFinder.Models;
 
 namespace SquareFinder.Controllers

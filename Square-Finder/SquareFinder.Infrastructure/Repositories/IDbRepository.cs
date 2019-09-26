@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SquareFinder.Models;
+﻿using SquareFinder.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquareFinder.Api.Repositories
+namespace SquareFinder.Infrastructure.Repositories
 {
     public interface IDbRepository
     {
@@ -20,8 +19,8 @@ namespace SquareFinder.Api.Repositories
         void DeletePoint(PointEntity point);
         void AddPoint(int pointListId, PointEntity point);
 
-        string ImportPoints(string data, string listId);
-        string DeletePoints(string data, string listId, DbContext db);
+        void ImportPoints(string data, string listId);
+        void DeletePoints(string data, string listId);
         IEnumerable<PointEntity> ConvertDataToPoints(string data);
 
         StateInfo GetStateInfo();

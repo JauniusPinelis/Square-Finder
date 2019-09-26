@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SquareFinder.Api.Db;
-using SquareFinder.Models;
+﻿
+using SquareFinder.Infrastructure.Db;
+using SquareFinder.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 
-namespace SquareFinder.Api.Repositories
+namespace SquareFinder.Infrastructure.Repositories
 {
     public class DbRepository : IDbRepository
     {
@@ -18,7 +18,7 @@ namespace SquareFinder.Api.Repositories
             _dbContext = dbContext;
         }
 
-        public string ImportPoints(string data, string listId)
+        public void ImportPoints(string data, string listId)
         {
             var currentListId = int.Parse(listId);
 
@@ -39,10 +39,9 @@ namespace SquareFinder.Api.Repositories
             }
 
             _dbContext.SaveChanges();
-            return errorBuilder.ToString();
         }
 
-        public void DeletePoints(string data, string listId, DbContext db)
+        public void DeletePoints(string data, string listId)
         {
             int currentListId = int.Parse(listId);
             var pointList = GetPointListById(currentListId);
@@ -56,10 +55,7 @@ namespace SquareFinder.Api.Repositories
                     DeletePoint(pointToDelete);
                 
                   
-            }
-            db.SaveChanges();
-
-            
+            }        
         }
 
         public IEnumerable<PointEntity> ConvertDataToPoints(string data)
@@ -111,7 +107,7 @@ namespace SquareFinder.Api.Repositories
 
         public void AddPointList(PointListEntity pointList)
         {
-            _dbContext.Add(pointList);
+            _dbContext.PointLists.Add(pointList);
         }
 
         public void OverwritePointList(int pointListId, PointListEntity pointList)

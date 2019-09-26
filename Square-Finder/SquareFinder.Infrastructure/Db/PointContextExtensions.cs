@@ -1,4 +1,5 @@
-﻿using SquareFinder.Models;
+﻿using SquareFinder.Infrastructure.Db;
+using SquareFinder.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

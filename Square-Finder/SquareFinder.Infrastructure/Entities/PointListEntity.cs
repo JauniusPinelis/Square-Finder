@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SquareFinder.Models
+namespace SquareFinder.Infrastructure.Entities
 {
     [Table("PointList")]
     public class PointListEntity
