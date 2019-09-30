@@ -9,7 +9,7 @@ namespace SquareFinder.Infrastructure.Db
         public PointContext(DbContextOptions<PointContext> options)
            : base(options)
         {
-           
+            Database.Migrate();
         }
 
         public DbSet<PointEntity> Points { get; set; }

@@ -11,6 +11,11 @@ namespace SquareFinder.Infrastructure.Entities
         public int Id { get; set; }
         public List<PointEntity> Points { get; set; }
 
+        public SquareEntity()
+        {
+
+        }
+
         public SquareEntity(PointEntity firstPoint, PointEntity secondPoint, PointEntity thirdPoint, PointEntity fourthPoint)
         {
             

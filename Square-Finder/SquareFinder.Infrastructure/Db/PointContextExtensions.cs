@@ -16,6 +16,8 @@ namespace SquareFinder.Api.Db
                 return;
             }
 
+            
+
             var points = new List<PointEntity>()
             {
                 new PointEntity()
@@ -35,7 +37,13 @@ namespace SquareFinder.Api.Db
                 }
             };
 
-            context.Points.AddRange(points);
+            var defaultPointList = new PointListEntity()
+            {
+                Name = "default",
+                Points = points
+            };
+
+            context.PointLists.Add(defaultPointList);
             context.SaveChanges();
         }
     }
