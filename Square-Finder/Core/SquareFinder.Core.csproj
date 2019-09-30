@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

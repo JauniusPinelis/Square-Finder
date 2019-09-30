@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using SquareFinder.Api.Db;
 using SquareFinder.Infrastructure.Db;
 using SquareFinder.Infrastructure.Repositories;
+using SquareFinder.Application;
 
 namespace SquareFinder.Api
 {
@@ -32,13 +33,13 @@ namespace SquareFinder.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // Auto Mapper Configurations
-            /*var mappingConfig = new MapperConfiguration(mc =>
+            var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);*/
+            services.AddSingleton(mapper);
 
 
             services.AddDbContext<PointContext>(o => o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));

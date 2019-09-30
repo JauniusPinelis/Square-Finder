@@ -18,11 +18,10 @@ namespace SquareFinder.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public void ImportPoints(string data, string listId)
+        public void ImportPoints(string data, int listId)
         {
-            var currentListId = int.Parse(listId);
+            var pointList = GetPointListById(listId);
 
-            var pointList = GetPointListById(currentListId);
             if (pointList != null)
             {
                 var newPointsList = pointList.Points;
@@ -41,10 +40,9 @@ namespace SquareFinder.Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void DeletePoints(string data, string listId)
+        public void DeletePoints(string data, int listId)
         {
-            int currentListId = int.Parse(listId);
-            var pointList = GetPointListById(currentListId);
+            var pointList = GetPointListById(listId);
             if (pointList == null) return;
             var pointsToDelete = ConvertDataToPoints(data);
 
@@ -129,7 +127,10 @@ namespace SquareFinder.Infrastructure.Repositories
         public void AddPoint(int pointListId, PointEntity point)
         {
             var pointList = GetPointListById(pointListId);
-            pointList.Points.Add(point);
+            if (pointList != null)
+            {
+                _dbContext.Points.Add(point);
+            }
 
         }
 
@@ -143,8 +144,9 @@ namespace SquareFinder.Infrastructure.Repositories
 
             return new StateInfo()
             {
-                Points = GetPoints(),
-                PointLists = GetPointLists()
+                Points = GetPoints().ToList(),
+                PointLists = GetPointLists().ToList(),
+                Squares = new List<SquareEntity>()
             };
         }
 

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareFinder.Api", "SquareF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareFinder.Core", "Core\SquareFinder.Core.csproj", "{8EFBB6A8-CC4A-4FCB-92DE-8711C12C41EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareFinder.Infrastructure", "SquareFinder.Infrastructure\SquareFinder.Infrastructure.csproj", "{EACCF62C-0A44-41B4-A871-1AB90A4262FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareFinder.Infrastructure", "SquareFinder.Infrastructure\SquareFinder.Infrastructure.csproj", "{EACCF62C-0A44-41B4-A871-1AB90A4262FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareFinder.Application", "SquareFinder.Application\SquareFinder.Application.csproj", "{77496CDA-3A93-401E-AF31-6A2B8B4601CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EACCF62C-0A44-41B4-A871-1AB90A4262FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EACCF62C-0A44-41B4-A871-1AB90A4262FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EACCF62C-0A44-41B4-A871-1AB90A4262FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77496CDA-3A93-401E-AF31-6A2B8B4601CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77496CDA-3A93-401E-AF31-6A2B8B4601CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77496CDA-3A93-401E-AF31-6A2B8B4601CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77496CDA-3A93-401E-AF31-6A2B8B4601CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

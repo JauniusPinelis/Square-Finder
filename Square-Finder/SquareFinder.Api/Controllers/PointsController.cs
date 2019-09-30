@@ -36,7 +36,9 @@ namespace SquareFinder.Controllers
 
             if (point.IsValid(pointList))
             {
-                pointList?.Points.Add(point);
+                _repository.AddPoint(pointData.PointListId, point);
+                _repository.SaveChanges();
+
                 return CreatedAtRoute("DefaultApi", new { id = point.Id }, point);
             }
 

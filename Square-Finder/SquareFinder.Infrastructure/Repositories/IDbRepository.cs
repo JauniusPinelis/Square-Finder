@@ -19,8 +19,8 @@ namespace SquareFinder.Infrastructure.Repositories
         void DeletePoint(PointEntity point);
         void AddPoint(int pointListId, PointEntity point);
 
-        void ImportPoints(string data, string listId);
-        void DeletePoints(string data, string listId);
+        void ImportPoints(string data, int listId);
+        void DeletePoints(string data, int listId);
         IEnumerable<PointEntity> ConvertDataToPoints(string data);
 
         StateInfo GetStateInfo();

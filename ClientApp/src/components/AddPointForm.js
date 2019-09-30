@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class AddNewPointForm extends Component {
+export default class AddPointForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,7 @@ export default class AddNewPointForm extends Component {
       var newPoint = {
         x: x,
         y: y,
-        pointListId: 0
+        pointListId: 1
       };
       this.props.addPoint(newPoint);
     } else {

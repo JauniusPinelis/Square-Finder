@@ -11,7 +11,7 @@ import Grid from "./components/Grid";
 import Points from "./components/Points";
 import Squares from "./components/Squares";
 import PointLists from "./components/PointLists";
-import AddNewPointForm from "./components/AddNewPointForm";
+import AddPointForm from "./components/AddPointForm";
 import ButtonMenu from "./components/ButtonMenu";
 
 /* React-bootstrap components */
@@ -94,7 +94,7 @@ class App extends Component {
               />
             </Col>
             <Col>
-              <AddNewPointForm addPoint={this.addPoint} />
+              <AddPointForm addPoint={this.addPoint} />
             </Col>
             <Col>{<ButtonMenu />}</Col>
           </Row>
