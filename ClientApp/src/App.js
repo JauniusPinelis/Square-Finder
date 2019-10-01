@@ -19,6 +19,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+/** custom files */
+import {apiCall} from "./helpers/ApiHelpers";
+
 class App extends Component {
   constructor() {
     super();
@@ -47,10 +50,11 @@ class App extends Component {
       });
   }
   deletePoint = () => {};
+  
   deleteAllPoint = () => {};
   addPoint = pointObject => {
     var pointJson = JSON.stringify(pointObject);
-    axios({
+    /*axios({
       headers: {
         "Content-Type": "application/json"
       },
@@ -58,8 +62,14 @@ class App extends Component {
       url: "/api/points",
 
       data: pointJson
-    });
-    this.loadData();
+    }).then(res=> {
+      this.loadData();
+    });*/
+
+    apiCall('/api/points','post', pointJson, res => {
+      this.loadData();
+    })
+   
   };
   addPointList() {}
   render() {
