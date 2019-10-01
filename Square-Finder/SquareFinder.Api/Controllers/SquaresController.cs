@@ -2,7 +2,6 @@
 using SquareFinder.Api.Db;
 using SquareFinder.Infrastructure.Entities;
 using SquareFinder.Infrastructure.Repositories;
-using SquareFinder.Models;
 
 namespace SquareFinder.Controllers
 {

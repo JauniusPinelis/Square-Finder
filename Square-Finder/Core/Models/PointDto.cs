@@ -1,5 +1,5 @@
 ﻿
-namespace SquareFinder.Models
+namespace SquareFinder.Core.Models
 {
     public class PointDto
     {

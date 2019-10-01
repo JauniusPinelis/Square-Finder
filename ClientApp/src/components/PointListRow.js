@@ -2,14 +2,14 @@ import React, { Component } from "react";
 
 export default class PointListRow extends Component {
   deletePointList() {
-    this.props.store.deletePointList(this.props.pointList.Id);
+    this.props.deletePointList(this.props.pointList.Id);
   }
   loadPointList() {
-    this.props.store.loadPointList(this.props.pointList.Id);
+    this.props.loadPointList(this.props.pointList.Id);
   }
   render() {
     var pointList = this.props.pointList;
-    if (pointList.Id === this.props.state.currentListId)
+    if (pointList.Id === this.props.currentListId)
       return (
         <tr>
           <th scope="row">{pointList.Id}</th>

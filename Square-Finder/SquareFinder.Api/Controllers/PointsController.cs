@@ -3,10 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using SquareFinder.Core.Models;
 using SquareFinder.Infrastructure.Entities;
 using SquareFinder.Infrastructure.Repositories;
-using SquareFinder.Models;
-
 namespace SquareFinder.Controllers
 {
     [Route("api/[controller]")]

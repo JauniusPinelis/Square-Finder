@@ -1,4 +1,4 @@
-﻿using SquareFinder.Models;
+﻿using SquareFinder.Core.Models;
 using System;
 
 namespace Core

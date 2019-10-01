@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\SquareFinder.Core.csproj" />
+    <ProjectReference Include="..\SquareFinder.Infrastructure\SquareFinder.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

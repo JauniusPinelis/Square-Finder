@@ -1,4 +1,6 @@
 ﻿
+using AutoMapper;
+using SquareFinder.Core.Models;
 using SquareFinder.Infrastructure.Db;
 using SquareFinder.Infrastructure.Entities;
 using System;
@@ -12,10 +14,13 @@ namespace SquareFinder.Infrastructure.Repositories
     public class DbRepository : IDbRepository
     {
         private PointContext _dbContext;
+        private IMapper _mapper;
 
-        public DbRepository(PointContext dbContext)
+        public DbRepository(PointContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         public void ImportPoints(string data, int listId)
@@ -142,12 +147,14 @@ namespace SquareFinder.Infrastructure.Repositories
         public StateInfo GetStateInfo()
         {
 
-            return new StateInfo()
+            var state = new StateInfo()
             {
-                Points = GetPoints().ToList(),
-                PointLists = GetPointLists().ToList(),
-                Squares = new List<SquareEntity>()
+                Points = _mapper.Map<List<PointDto>>(GetPoints()),
+                PointLists = _mapper.Map<List<PointListDto>>(GetPointLists()),
+                Squares = new List<SquareDto>()
             };
+
+            return state;
         }
 
         public void SaveChanges()
