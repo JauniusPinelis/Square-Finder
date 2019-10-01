@@ -129,9 +129,9 @@ namespace SquareFinder.Infrastructure.Repositories
             _dbContext.Points.Remove(point);
         }
 
-        public void AddPoint(int pointListId, PointEntity point)
+        public void AddPoint(PointEntity point)
         {
-            var pointList = GetPointListById(pointListId);
+            var pointList = GetPointListById(point.PointListId);
             if (pointList != null)
             {
                 _dbContext.Points.Add(point);

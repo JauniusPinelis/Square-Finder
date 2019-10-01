@@ -11,6 +11,9 @@ namespace SquareFinder.Application
         {
             CreateMap<PointEntity, PointDto>();
             CreateMap<PointListEntity, PointListDto>();
+
+            CreateMap<PointDto, PointEntity>();
+            CreateMap<PointListDto, PointListEntity>();
         }
     }
 }

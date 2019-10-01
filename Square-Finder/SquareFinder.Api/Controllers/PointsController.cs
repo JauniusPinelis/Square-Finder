@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Text;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SquareFinder.Core.Models;
 using SquareFinder.Infrastructure.Entities;
@@ -13,9 +10,11 @@ namespace SquareFinder.Controllers
     public class PointsController : Controller
     {
         private IDbRepository _repository;
-        public PointsController(IDbRepository repository)
+        private IMapper _mapper;
+        public PointsController(IDbRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
 
@@ -30,18 +29,18 @@ namespace SquareFinder.Controllers
         [HttpPost]
         public IActionResult AddPoint([FromBody] PointDto pointData)
         {
-            var point = new PointEntity(pointData.X, pointData.Y);
+            var point = _mapper.Map<PointEntity>(pointData);
             var pointList = _repository.GetPointListById(pointData.PointListId);
 
             if (point.IsValid(pointList))
             {
-                _repository.AddPoint(pointData.PointListId, point);
+                _repository.AddPoint(point);
                 _repository.SaveChanges();
 
                 return CreatedAtRoute("DefaultApi", new { id = point.Id }, point);
             }
 
-            _repository.AddPoint(pointData.PointListId, point);
+            _repository.AddPoint(point);
 
             return CreatedAtRoute("DefaultApi", new { id = point.Id }, point);  
         }

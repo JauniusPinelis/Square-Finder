@@ -17,7 +17,7 @@ namespace SquareFinder.Infrastructure.Repositories
 
         PointEntity GetPointById(int pointId);
         void DeletePoint(PointEntity point);
-        void AddPoint(int pointListId, PointEntity point);
+        void AddPoint(PointEntity point);
 
         void ImportPoints(string data, int listId);
         void DeletePoints(string data, int listId);

@@ -21,7 +21,7 @@ export default class PointLists extends Component {
   }
   render() {
     var pointListRows = this.props.pointLists.map(function(pointList) {
-      return <PointListRow key={pointList.Id} pointList={pointList} />;
+      return <PointListRow key={pointList.id} pointList={pointList} />;
     });
     return (
       <div id="pointList">
