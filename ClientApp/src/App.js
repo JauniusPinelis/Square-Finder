@@ -33,6 +33,7 @@ class App extends Component {
 
     this.loadData();
   }
+  
   loadData() {
     axios
       .get("/api/points")
@@ -49,41 +50,24 @@ class App extends Component {
         //nothing for now
       });
   }
-  deletePoint = (pointId) => {
-    axios({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "delete",
-      url: "/api/points",
 
-      data: pointId
-    }).then(res=> {
+  deletePoint = (pointId) => {
+    apiCall('/api/points','delete', pointId, res => {
       this.loadData();
-    });
+    })
   };
   
   deleteAllPoint = () => {};
+
   addPoint = pointObject => {
-    var pointJson = JSON.stringify(pointObject);
-    /*axios({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "post",
-      url: "/api/points",
-
-      data: pointJson
-    }).then(res=> {
-      this.loadData();
-    });*/
-
-    apiCall('/api/points','post', pointJson, res => {
+    apiCall('/api/points','post', JSON.stringify(pointObject), res => {
       this.loadData();
     })
    
   };
+
   addPointList() {}
+
   render() {
     return (
       <div className="container">
