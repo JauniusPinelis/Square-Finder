@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SquareFinder.Api.Db
 {
-    public static class PointContextExtensions
+    public static class AppDbContextExtensions
     {
-        public static void EnsureSeedDataForContext(this PointContext context)
+        public static void EnsureSeedDataForContext(this AppDbContext context)
         {
             if (context.Points.Any())
             {

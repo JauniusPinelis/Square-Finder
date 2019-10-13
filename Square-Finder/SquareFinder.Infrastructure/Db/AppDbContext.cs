@@ -4,9 +4,9 @@ using SquareFinder.Infrastructure.Entities;
 
 namespace SquareFinder.Infrastructure.Db
 {
-    public class PointContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public PointContext(DbContextOptions<PointContext> options)
+        public AppDbContext(DbContextOptions<DbContext> options)
            : base(options)
         {
             Database.Migrate();

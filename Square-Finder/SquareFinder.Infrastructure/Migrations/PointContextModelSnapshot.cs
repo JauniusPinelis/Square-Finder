@@ -8,7 +8,7 @@ using SquareFinder.Infrastructure.Db;
 
 namespace SquareFinder.Infrastructure.Migrations
 {
-    [DbContext(typeof(PointContext))]
+    [DbContext(typeof(Db.DbContext))]
     partial class PointContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

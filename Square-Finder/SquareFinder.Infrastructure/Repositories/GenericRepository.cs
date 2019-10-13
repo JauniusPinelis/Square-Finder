@@ -10,11 +10,11 @@ namespace SquareFinder.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private PointContext _context;
+        private AppDbContext _context;
         private IMapper _mapper;
         private DbSet<T> table = null;
 
-        public GenericRepository(PointContext context, IMapper mapper)
+        public GenericRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

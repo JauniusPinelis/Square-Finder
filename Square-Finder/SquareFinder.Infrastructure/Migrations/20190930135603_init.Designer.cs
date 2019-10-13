@@ -9,7 +9,7 @@ using SquareFinder.Infrastructure.Db;
 
 namespace SquareFinder.Infrastructure.Migrations
 {
-    [DbContext(typeof(PointContext))]
+    [DbContext(typeof(Db.DbContext))]
     [Migration("20190930135603_init")]
     partial class init
     {

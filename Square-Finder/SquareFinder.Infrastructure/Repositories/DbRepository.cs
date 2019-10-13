@@ -13,10 +13,10 @@ namespace SquareFinder.Infrastructure.Repositories
 {
     public class DbRepository : IDbRepository
     {
-        private PointContext _dbContext;
+        private DbContext _dbContext;
         private IMapper _mapper;
 
-        public DbRepository(PointContext dbContext, IMapper mapper)
+        public DbRepository(DbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

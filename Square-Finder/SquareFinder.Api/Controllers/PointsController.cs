@@ -9,9 +9,9 @@ namespace SquareFinder.Controllers
     [ApiController]
     public class PointsController : Controller
     {
-        private IDbRepository _repository;
+        private IGenericRepository<PointEntity> _repository;
         private IMapper _mapper;
-        public PointsController(IDbRepository repository, IMapper mapper)
+        public PointsController(IGenericRepository<PointEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

@@ -40,13 +40,13 @@ namespace SquareFinder.Api
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddDbContext<PointContext>(o => o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<DbContext>(o => o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<IDbRepository, DbRepository>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, PointContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Infrastructure.Db.DbContext context)
         {
             if (env.IsDevelopment())
             {
