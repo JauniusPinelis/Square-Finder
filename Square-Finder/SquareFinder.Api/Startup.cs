@@ -40,10 +40,7 @@ namespace SquareFinder.Api
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
-
             services.AddDbContext<PointContext>(o => o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-
             services.AddScoped<IDbRepository, DbRepository>();
 
         }
