@@ -49,7 +49,19 @@ class App extends Component {
         //nothing for now
       });
   }
-  deletePoint = () => {};
+  deletePoint = (pointId) => {
+    axios({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "delete",
+      url: "/api/points",
+
+      data: pointId
+    }).then(res=> {
+      this.loadData();
+    });
+  };
   
   deleteAllPoint = () => {};
   addPoint = pointObject => {

@@ -46,7 +46,7 @@ namespace SquareFinder.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeletePoint(int pointId)
+        public IActionResult DeletePoint([FromBody] int pointId)
         {
 
             PointEntity point = _repository.GetPointById(pointId);
@@ -56,6 +56,7 @@ namespace SquareFinder.Controllers
             }
 
             _repository.DeletePoint(point);
+            _repository.SaveChanges();
 
             return Ok(point);
         }

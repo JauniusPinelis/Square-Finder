@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 export default class PointRow extends Component {
-  deletePoint() {
-    this.props.store.deletePoint(this.props.point.Id);
+  deletePoint = () => {
+    this.props.deletePoint(this.props.point.id);
   }
   render() {
     var point = this.props.point;

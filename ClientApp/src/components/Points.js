@@ -8,8 +8,8 @@ export default class Points extends Component {
   }
 
   render() {
-    var points = this.props.points.map(function(point) {
-      return <PointRow key={point.id} point={point} />;
+    var points = this.props.points.map((point) => {
+      return <PointRow key={point.id} point={point} deletePoint={this.props.deletePoint} />;
     });
     return (
       <div id="pointsList">
